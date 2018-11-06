@@ -1,0 +1,81 @@
+---
+output:
+  github_document
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# tournamentbuildr <img src="man/figures/logo.png" align="right" />
+
+An R package for building and scheduling tournaments.
+
+### Build
+
+Build your very own tournament!
+
+```{r}
+library(tournamentbuildr)
+
+# build a round-robin tournament
+x <- Tournament$new(teams = LETTERS[1:8], type = "round_robin")
+
+# view the schedule
+x$schedule
+```
+
+### Play
+
+Once created, you can also record the results and track progress.
+
+```{r}
+# play the first few games
+x$play(game = 1, winner = "A")
+x$play(game = 2, winner = "A")
+x$play(game = 3, winner = "D")
+
+# playing is chainable, cool!
+x$play(4, "A")$play(5, "F")$play(6, "G")
+
+# how do things stand now?
+x$standings()
+```
+
+### Variety
+
+Right now, you can choose from these types of tournaments:
+  - round-robin (`round_robin`)
+  - random-robin (`random_robin`)
+  - single-elimination bracket (`bracket`)
+  
+Note that for the single-elimination tournament, teams are assumed to be pre-ranked and ordered from best-to-worst.
+
+```{r, eval = FALSE}
+# round-robin
+Tournament$new(teams = LETTERS[1:8], type = "round_robin")
+
+# random-robin (i.e., a round-robin that's been cut short!)
+Tournament$new(teams = LETTERS[1:8], type = "random_robin", n_games = 10)
+
+# single-elimination bracket
+Tournament$new(teams = LETTERS[1:8], type = "bracket")
+```
+
+### Future Work
+
+#### Equipment/Facility/Timeslot Scheduling
+  
+Given some restrictions on necessary equipment and availability of facilities, how should tournament games be scheduled?
+
+#### Additional Tournament Options
+
+  - games with >2 teams competing (e.g., swim meet, hungry hungry hippos)
+  - multiple divisions/leagues
+  - double-elimination tournaments
+  - capacity for customizable game attributes (e.g., goals for/against, shutouts)
+  

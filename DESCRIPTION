@@ -1,0 +1,16 @@
+Package: tournamentbuildr
+Type: Package
+Title: Build and schedule tournaments
+Version: 0.1.0
+Author: Anthony Pileggi
+Maintainer: Anthony Pileggi <apileggi20@gmail.com>
+Description: An R package for building, scheduling, and playing tournaments.
+    Because planning is hard, but playing is awesome. 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Imports: 
+    tidyr,
+    magrittr,
+    dplyr
